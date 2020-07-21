@@ -6,12 +6,12 @@ the best day to buy and the best day to sell. Days start at 0.
 
 def stock_picker(array)
   profits = {}
-  array.each do |stock|
-    day_of_purchase = array.index(stock)
-    array.each do |sell_value|
-      day_of_sale = array.index(sell_value)
-      if day_of_purchase < day_of_sale
-        profits["#{day_of_purchase}->#{day_of_sale}"] = sell_value - stock
+  array.each do |buy|
+    buy_idx = array.index(buy)
+    array.each do |sell|
+      sell_idx = array.index(sell)
+      if buy_idx < sell_idx
+        profits["#{buy_idx}->#{sell_idx}"] = sell - buy
       end
     end
   end
