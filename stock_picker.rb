@@ -5,21 +5,22 @@ the best day to buy and the best day to sell. Days start at 0.
 =end
 
 def stock_picker(array)
-  profits = {}
+  best_days = []
+  max_profit = 0
   array.each do |buy|
     buy_idx = array.index(buy)
     array.each do |sell|
       sell_idx = array.index(sell)
       if buy_idx < sell_idx
-        profits["#{buy_idx}->#{sell_idx}"] = sell - buy
+        profit = sell - buy
+        if profit > max_profit
+          max_profit = profit
+          best_days = [buy_idx, sell_idx]
+        end
       end
     end
   end
-  max_profit = profits.max_by { |k,v| v }
-  best_days = max_profit[0].split('->')
-  day_to_buy = best_days[0].to_i
-  day_to_sell = best_days[1].to_i
-  p [day_to_buy, day_to_sell]
+  p best_days
 end
 
 stock_picker([17,3,6,9,15,8,6,1,10])
